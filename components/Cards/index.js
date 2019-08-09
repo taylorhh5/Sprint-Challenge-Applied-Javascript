@@ -19,11 +19,21 @@
 // Create a card for each of the articles and add the card to the DOM.
   
 
-//need to loop through array of articles
-//loop again and get specific info
 
 
-axios.get('https://lambda-times-backend.herokuapp.com/articles')
+
+axios.get('https://lambda-times-backend.herokuapp.com/articles') //javascript
+    .then((response) => {
+        console.log(response);
+        response.data.articles.javascript.forEach (info=> {
+            const newArticle = articleCreate (info);
+                const articleCon=document.querySelector(".cards-container")
+                articleCon.appendChild (newArticle);
+    
+            })
+        })
+
+axios.get('https://lambda-times-backend.herokuapp.com/articles')  //bootsrap
 .then((response) => {
     console.log(response);
     response.data.articles.bootstrap.forEach (info=> {
@@ -33,32 +43,38 @@ axios.get('https://lambda-times-backend.herokuapp.com/articles')
 
         })
     })
-
-      
-
-// axios.get('https://lambda-times-backend.herokuapp.com/articles')
-// .then((response) => {
-//     console.log(response);
-//     response.data.articles.javascript.forEach (info=> {
-//         const newArticle = articleCreate (info);
-//             const articleCon=document.querySelector(".cards-container")
-//             articleCon.appendChild (newArticle);
-//         })
-//     })
-
-  
-
-//     axios.get('https://lambda-times-backend.herokuapp.com/articles')
-//     .then((response) => {
-//         console.log(response);
-//         response.data.articles.jquery.forEach (info=> {
-//             const newArticle = articleCreate (info);
-//                 const articleCon=document.querySelector(".cards-container")
-//                 articleCon.appendChild (newArticle);
-//             })
-//         })
     
-
+       axios.get('https://lambda-times-backend.herokuapp.com/articles')  //jquery
+        .then((response) => {
+            console.log(response);
+            response.data.articles.jquery.forEach (info=> {
+                const newArticle = articleCreate (info);
+                    const articleCon=document.querySelector(".cards-container")
+                    articleCon.appendChild (newArticle);
+        
+                })
+            })
+            axios.get('https://lambda-times-backend.herokuapp.com/articles')   //node
+            .then((response) => {
+                console.log(response);
+                response.data.articles.node.forEach (info=> {
+                    const newArticle = articleCreate (info);
+                        const articleCon=document.querySelector(".cards-container")
+                        articleCon.appendChild (newArticle);
+            
+                    })
+                })
+                axios.get('https://lambda-times-backend.herokuapp.com/articles')     //technology
+                .then((response) => {
+                    console.log(response);
+                    response.data.articles.technology.forEach (info=> {
+                        const newArticle = articleCreate (info);
+                            const articleCon=document.querySelector(".cards-container")
+                            articleCon.appendChild (newArticle);
+                
+                        })
+                    })
+                
 
 
 function articleCreate (info) {
@@ -67,33 +83,31 @@ function articleCreate (info) {
 const divCard = document.createElement('div');
 const divHeadline = document.createElement('div');
 const divAuthor =document.createElement('div');
-const imgC = document.createElement('div');
-const imgSrc =document.createElement('img');
+const imgDiv = document.createElement('div');
+const imgSource =document.createElement('img');
 const spanName = document.createElement('span');
-
-//structure
-divCard.appendChild(divHeadline)
-divCard.appendChild(divAuthor)
-divAuthor.appendChild(imgC)
-imgC.appendChild(imgSrc)
-divAuthor.appendChild(spanName)
-
-//class names
-divCard.classList.add('card')
-divHeadline.classList.add('headline')
-divAuthor.classList.add('author')
-imgC.classList.add('img-container')
 
 
 
 //set text content 
 divHeadline.textContent = info.headline;
+imgSource.src =  info.authorPhoto;
 divAuthor.textContent = info.authorName;
-imgSrc.src = info.authorPhoto;
+
+//structure
+divCard.appendChild(divHeadline)
+divCard.appendChild(divAuthor)
+divAuthor.appendChild(imgDiv)
+imgDiv.appendChild(imgSource)
+divAuthor.appendChild(spanName)
 
 
 
-
+//class names
+divCard.classList.add('card')
+divHeadline.classList.add('headline')
+divAuthor.classList.add('author')
+imgDiv.classList.add('img-container')
 
 return divCard
 
