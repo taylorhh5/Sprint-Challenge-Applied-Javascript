@@ -22,63 +22,21 @@
 
 
 
-axios.get('https://lambda-times-backend.herokuapp.com/articles') //javascript
-    .then((response) => {
-        console.log(response);
-        response.data.articles.javascript.forEach (info=> {
-            const newArticle = articleCreate (info);
-                const articleCon=document.querySelector(".cards-container")
-                articleCon.appendChild (newArticle);
-    
-            })
-        })
 
-axios.get('https://lambda-times-backend.herokuapp.com/articles')  //bootsrap
-.then((response) => {
-    console.log(response);
-    response.data.articles.bootstrap.forEach (info=> {
-        const newArticle = articleCreate (info);
-            const articleCon=document.querySelector(".cards-container")
-            articleCon.appendChild (newArticle);
-
-        })
-    })
-    
-       axios.get('https://lambda-times-backend.herokuapp.com/articles')  //jquery
-        .then((response) => {
-            console.log(response);
-            response.data.articles.jquery.forEach (info=> {
-                const newArticle = articleCreate (info);
-                    const articleCon=document.querySelector(".cards-container")
-                    articleCon.appendChild (newArticle);
-        
-                })
-            })
-            axios.get('https://lambda-times-backend.herokuapp.com/articles')   //node
-            .then((response) => {
-                console.log(response);
-                response.data.articles.node.forEach (info=> {
-                    const newArticle = articleCreate (info);
-                        const articleCon=document.querySelector(".cards-container")
-                        articleCon.appendChild (newArticle);
-            
-                    })
-                })
-                axios.get('https://lambda-times-backend.herokuapp.com/articles')     //technology
-                .then((response) => {
-                    console.log(response);
-                    response.data.articles.technology.forEach (info=> {
-                        const newArticle = articleCreate (info);
-                            const articleCon=document.querySelector(".cards-container")
-                            articleCon.appendChild (newArticle);
-                
-                        })
-                    })
-                
+                    axios.get('https://lambda-times-backend.herokuapp.com/articles')  //jquery
+        .then(res => {
+         Object.values(res.data.articles).forEach(topic =>{
+          
+           topic.forEach(article =>{
+             articleCreate(article);
+           })
+          })
+         })
+        .catch(err =>console.log('error'))
 
 
 function articleCreate (info) {
-
+    
 //define new elements
 const divCard = document.createElement('div');
 const divHeadline = document.createElement('div');
@@ -109,7 +67,9 @@ divHeadline.classList.add('headline')
 divAuthor.classList.add('author')
 imgDiv.classList.add('img-container')
 
-return divCard
+let parent = document.querySelector('.cards-container')
+parent.appendChild(divCard)
+ return divCard
 
 
 }

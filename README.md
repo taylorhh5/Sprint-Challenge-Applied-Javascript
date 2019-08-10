@@ -45,11 +45,11 @@ Event listeners "listen" for an event to be called. EventListeners are put on ce
 
 4. Why would we convert NodeList into an Array?
 
-Converting a NodeList into an array will allow you to use methods such as forEach and filter. You are unable to use these methods on a NodeList.
+A nodeList is an array like item that has Converting a NodeList into an array will allow you to use methods such as forEach and filter. You are unable to use these methods on a NodeList.
 
 5. What is a component?
 
-A component is a reusable piece of code.
+A component is a reusable piece of code. It can be made up of HTMl, CSS or Javascript. It can be reused over and over again to create similar elements or reactions.
 
 ### Git Set up
 
